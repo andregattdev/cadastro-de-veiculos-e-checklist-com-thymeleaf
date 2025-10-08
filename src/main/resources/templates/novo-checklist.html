@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Checklist de Veículo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .icon-spacing {
+            margin-left: 10px;
+        }
+        .btn-primary {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        .btn-secondary {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        .sidebar {
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #93f590;
+            padding-top: 80px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #fff;
+            color: #0000ff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/novo}">Novo Veículo</a>
+        <a th:href="@{/lista-veiculos}">Veículos</a>
+        <a th:href="@{/lista-checklists}">Checklists</a>
+    </div>
+
+    <div class="container mt-5">
+        <div th:if="${veiculo != null}">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Veículo: <span th:text="${veiculo.modelo}"></span></h2>
+                    <h2>Veículo: <span th:text="${veiculo.id}"></span></h2>
+
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Frota: <span th:text="${veiculo.frota}"></span></h5>
+                    <p class="card-text">Filial: <span th:text="${veiculo.regiao}"></span></p>
+
+                    <div th:if="${mensagem}" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <span th:text="${mensagem}"></span>
+                    </div>
+                    <div th:if="${erro}" class="alert alert-danger" role="alert">
+                        Veículo não encontrado.
+                    </div>
+                    
+                    <form th:action="@{/gravar-checklist/{id}(id=${veiculo.id})}" th:object="${item}" method="post">
+
+                        <div class="mb-3">
+                            <label class="form-label">Checklist do veículo</label>
+                            <textarea class="form-control" th:field="*{condicao}" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Salvar Checklist</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

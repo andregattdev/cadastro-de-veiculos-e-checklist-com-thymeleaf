@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Minha_Frota</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4" style="padding-bottom: 100px;">Minha_Frota &reg; </h1>
+        <div class="w-100 text-center" style="padding-bottom: 450px;">
+            <a th:href="@{/novo}" class="btn btn-primary btn-lg btn-responsive my-2 btn-custom">Cadastrar Veículo</a>
+            &nbsp;
+            <a th:href="@{/lista-veiculos}" class="btn btn-success btn-lg btn-responsive my-2 btn-custom">Veículos Cadastrados</a>
+            &nbsp;
+            <a th:href="@{/lista-checklists}" class="btn btn-info btn-lg btn-responsive my-2 btn-custom">Checklists</a>
+        </div>
+    </div>
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.amazonaws.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

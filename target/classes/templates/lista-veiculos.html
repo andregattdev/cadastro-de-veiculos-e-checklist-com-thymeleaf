@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veículos Cadastrados - MyFleetApp</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <style>
+        @font-face {
+            font-family: 'Roboto';
+            src: url('static/Roboto_Condensed-Regular.ttf') format('truetype');
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .icon-spacing {
+            margin-left: 10px;
+            
+        }
+
+        .btn-custom {
+            padding: 8px 10px;
+            font-size: 12px;
+        }
+
+        .sidebar {
+            height: 100%;
+            position: fixed;
+            width: 180px;
+            top: 0;
+            left: 0;
+            background-color: #93f590;
+            padding-top: 80px;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #fff;
+            color: #0000ff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/novo}">Novo Veículo</a>
+        <a th:href="@{/lista-veiculos}">Veículos</a>
+        <a th:href="@{/lista-checklists}">Checklists</a>
+    </div>
+
+    <div class="container" style="margin-left: 250px;">
+        <h2 style="text-align: center; color: blue; padding-top: 50px;">Lista de Veículos Cadastrados</h2>
+        <div class="row" style="padding-top: 30px;">
+            <div class="col" style="padding-bottom: 30px;">
+                <a th:href="@{/novo}" class="btn btn-primary btn-custom">Novo Veículo</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6" style="padding-bottom: 20px;">
+                <form th:action="@{/buscar}" method="post">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="termoBusca"
+                            placeholder="Digite frota, placa, modelo ou região" />&nbsp;
+                        <input class="btn btn-primary btn-custom" type="submit" value="Buscar" />&nbsp;&nbsp;
+                        <a th:href="@{/lista-veiculos}" class="btn btn-danger btn-custom" type="submit">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Frota</th>
+                        <th>Modelo</th>
+                        <th>Placa</th>
+                        <th>Região</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${listaVeiculos.empty}">
+                        <td colspan="5">Não existem veículos.</td>
+                    </tr>
+                    <tr th:each="veiculo : ${listaVeiculos}">
+                        <td><span th:text="${veiculo.frota}"></span></td>
+                        <td><span th:text="${veiculo.modelo}"></span></td>
+                        <td><span th:text="${veiculo.placa}"></span></td>
+                        <td><span th:text="${veiculo.regiao}"></span></td>
+                        <td>
+                            <a class="fa-regular fa-trash-can icon-dark btn-delete"
+                                th:href="@{/apagar/{id}(id=${veiculo.id})}"
+                                th:data-confirm-delete="|Você gostaria de apagar ${veiculo.modelo}?|"
+                                th:onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+                            </a>
+
+                            <a class="fa-regular fa-pen-to-square icon-dark icon-spacing"
+                                th:href="@{/editar/{id}(id=${veiculo.id})}">
+                            </a>
+
+                            <a class="fa-solid fa-list-ul icon-spacing" th:href="@{/novo-checklist/{id}(id=${veiculo.id})}"></a>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+h2 {
+    color: #0066cc;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+
+
+.mesnagem {
+    color: red;
+}
+
+.btn-primary {
+    background-color: #0066cc;
+    border-color: #0066cc;
+    padding: 15px 30px;
+    /* Aumenta o tamanho dos botões */
+    font-size: 1.25rem;
+    /* Aumenta o tamanho da fonte dos botões */
+    text-decoration: none;
+    /* Remove a linha embaixo dos botões */
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    padding: 15px 30px;
+    /* Aumenta o tamanho dos botões */
+    font-size: 1.25rem;
+    /* Aumenta o tamanho da fonte dos botões */
+    text-decoration: none;
+    /* Remove a linha embaixo dos botões */
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    padding: 15px 30px;
+    font-size: 1.25rem;
+    text-decoration: none;
+}
+    
+    
+
+a {
+    color: #FFF;
+}
+
+.w-100 {
+    text-align: center;
+}
+
+
+
+
+
+.icon-spacing {
+    margin-left: 10px;
+    /* Espaço entre os ícones */
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin-left: 0;
+}
+
+.sidebar {
+    height: 100%;
+    width: 180px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #93f590;
+    padding-top: 80px;
+}
+
+
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #fff;
+    color: #0000ff;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Veículos - MyFleetApp</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+         .mensagem{
+            color: red;
+        }
+        .btn-small {
+            font-size: 12px;
+            padding: 5px 10px;
+        }
+
+        .sidebar {
+            height: 100%;
+            position: fixed;
+            width: 180px;
+            top: 0;
+            left: 0;
+            background-color: #93f590;
+            padding-top: 80px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #fff;
+            color: #0000ff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/novo}">Novo Veículo</a>
+        <a th:href="@{/lista-veiculos}">Veículos</a>
+        <a th:href="@{/lista-checklists}">Checklists</a>
+    </div>
+
+
+    <div class="container">
+        <div class="container" style="margin-left: 200px">
+            <h2 class="text-center my-1" style="color: blue;">Editar Veículo</h2>
+            <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <span th:text="${mensagem}"></span>
+            </div>
+
+            <form class="w-100 text-center" th:action="@{/editar/{id}(id=${objetoVeiculo.id})}"
+                th:object="${objetoVeiculo}" method="post">
+                <div class="form-group row justify-content-center">
+                    <label for="vehicleName" class="col-sm-2 col-form-label text-right">Modelo do Veículo</label>
+                    <div class="col-sm-6 input-group">
+                        <input type="text" th:field="*{modelo}" class="form-control form-control-responsive">
+                        <div class="col-sm-5">
+                            <span class="mensagem" th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="vehiclePlate" class="col-sm-2 col-form-label text-right">Placa do Veículo</label>
+                    <div class="col-sm-6 input-group">
+                        <input type="text" th:field="*{placa}" class="form-control form-control-responsive small-input">
+                        <div class="col-sm-5">
+                            <span class="mensagem" th:if="${#fields.hasErrors('placa')}" th:errors="*{placa}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="vehicleFleet" class="col-sm-2 col-form-label text-right">Frota do Veículo</label>
+                    <div class="col-sm-6 input-group">
+                        <input type="text" th:field="*{frota}" class="form-control form-control-responsive small-input">
+                        <div class="col-sm-5">
+                            <span class="mensagem" th:if="${#fields.hasErrors('frota')}" th:errors="*{frota}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="vehicleFleet" class="col-sm-2 col-form-label text-right">Região</label>
+                    <div class="col-sm-6 input-group">
+                        <input type="text" th:field="*{regiao}"
+                            class="form-control form-control-responsive small-input">
+                        <div class="col-sm-5">
+                            <span class="mensagem" th:if="${#fields.hasErrors('regiao')}" th:errors="*{regiao}"></span>
+                        </div>
+                    </div>
+                </div>
+                <input class="btn btn-primary btn-small" type="submit" style="padding-right: 10px;" value="Gravar" />
+            </form>
+        </div>
+
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

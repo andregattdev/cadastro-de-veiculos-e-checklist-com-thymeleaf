@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veículos Cadastrados - MyFleetApp</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .table-container {
+            display: flex;
+            justify-content: flex-start;
+        }
+        .table th, .table td {
+            font-size: 0.8rem;
+        }
+        .btn-primary {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        .btn-secondary {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        .sidebar {
+            height: 100%;
+            position: fixed;
+            width: 180px;
+            top: 0;
+            left: 0;
+            background-color: #93f590;
+            padding-top: 80px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #fff;
+            color: #0000ff;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/novo}">Novo Veículo</a>
+        <a th:href="@{/lista-veiculos}">Veículos</a>
+        <a th:href="@{/lista-checklists}">Checklists</a>
+    </div>
+
+    <div class="container" style="margin-left: 250px;">
+
+      
+            
+        <h2 class="text-center" style="padding-bottom: 50px; color: blue;">Checklist do Veículo</h2>
+
+        
+
+      
+
+        <div class="row" style="padding-top: 20px;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Frota</th>
+                        <th>Modelo</th>
+                        <th>Placa</th>
+                        <th>Condição</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${listaChecklists.empty}">
+                        <td colspan="5">Não existem checklists.</td>
+                    </tr>
+                    <tr th:each="veiculo : ${listaChecklists}">
+                        <td><span th:text="${veiculo.frota}"></span></td>
+                        <td><span th:text="${veiculo.modelo}"></span></td>
+                        <td><span th:text="${veiculo.placa}"></span></td>
+                        <td><span th:text="${checklistVeiculo.condicao}"></span></td>
+                        <td>
+                            
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.amazonaws.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+
+</html>
