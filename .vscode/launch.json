@@ -2,6 +2,16 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Spring Boot-ApiCadastroVeiculosApplication<api_cadastro_veiculos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.br.ag.api_cadastro_veiculos.ApiCadastroVeiculosApplication",
+            "projectName": "api_cadastro_veiculos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-ApiCadastroVeiculosApplication<api-cadastro-veiculos>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
